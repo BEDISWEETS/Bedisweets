@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bedi Sweets — Since 2005</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body {
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+  background-image: url('https://png.pngtree.com/background/20220723/original/pngtree-background-biru-keren-dan-kosong-abstract-untuk-template-desain-powerpoint-ppt-picture-image_1738466.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+header { background-color: rgba(255,255,255,0.9); backdrop-blur: 5px; }
+
+.product-img { height: 200px; width: 100%; object-fit: cover; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+.product-img:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+button { transition: all 0.3s ease; transform: translateY(0); }
+button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 14px rgba(0,0,0,0.2); }
+
+/* === Full Screen Festival Banner === */
+.festive-banner { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+.slider img { position: absolute; width: 100%; height: 100%; object-fit: cover; top:0; left:0; opacity:0; transition: opacity 2s ease-in-out; }
+.slider img.active { opacity:1; }
+
+/* === Banner Text Animation === */
+.banner-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 20; max-width: 800px; color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+.banner-text h1 { font-size: 3rem; font-weight: 800; line-height:1.2; margin-bottom:1rem; animation: bounceIn 1.5s ease infinite alternate; }
+.banner-text p { font-size:1.3rem; animation: fadeSlideIn 2s ease infinite alternate; }
+
+/* Repeating Animations */
+@keyframes bounceIn { 0% { transform: translateY(-20px); opacity:0.7;} 50% { transform: translateY(10px); opacity:1;} 100% { transform: translateY(0); opacity:0.9;} }
+@keyframes fadeSlideIn { 0% { opacity:0.6; transform: translateY(10px);} 50% { opacity:1; transform: translateY(0);} 100% { opacity:0.8; transform: translateY(5px);} }
+
+/* Floating Sparkles */
+.sparkle { position: absolute; width: 5px; height:5px; border-radius:50%; background: #fff; opacity:0.8; animation: sparkleMove linear infinite; }
+@keyframes sparkleMove { 0% { transform: translateY(0) scale(0.5); opacity:0.5;} 50% { opacity:1; } 100% { transform: translateY(-800px) scale(1); opacity:0;} }
+
+/* Confetti */
+#confetti { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:9999; }
+.confetti-piece { position: absolute; width: 6px; height: 6px; opacity:0.8; animation-name: confetti-fall; animation-timing-function: linear; }
+@keyframes confetti-fall { 0% { transform: translateY(0) rotate(0deg);} 100% { transform: translateY(100vh) rotate(360deg); opacity:0;} }
+
+/* Force Desktop View on Mobile */
+@media (max-width: 768px){ body { min-width:1024px; overflow-x:auto; } }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="sticky top-0 z-50 shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/1463/1463264.png" alt="Bedi Sweets" class="w-12 h-12 object-contain"/>
+      <div><h1 class="font-extrabold text-xl tracking-tight text-rose-700">Bedi Sweets</h1><p class="text-xs text-gray-600">Since 2005</p></div>
+    </a>
+    <nav class="flex gap-8 text-sm font-medium">
+      <a href="#" class="hover:text-rose-600 transition">Home</a>
+      <a href="#products" class="hover:text-rose-600 transition">Products</a>
+      <a href="#about" class="hover:text-rose-600 transition">About</a>
+      <a href="#contact" class="hover:text-rose-600 transition">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Festival Banner -->
+<section class="festive-banner">
+  <div class="slider">
+    <img src="https://hanuramfoods.com/app/webroot/files/catalog/Slider/(A)%20Diwali%2025%20Web-01.jpg" class="active"/>
+    <img src="https://i.pinimg.com/originals/9e/ba/fd/9ebafdd16d2818eb56d68d7729537b0b.gif"/>
+  </div>
+
+  <!-- Floating sparkles -->
+  <div id="sparkles"></div>
+
+  <!-- Banner Text -->
+  <div class="banner-text">
+    <h1>Delicious Sweets, Wholesale Rates</h1>
+    <p>Serving Amritsar since 2005. Minimum order 5kg. Fresh, authentic, and delivered to your doorstep.</p>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="bg-gray-50 py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-extrabold text-center text-gray-800">Our Sweets</h2>
+    <p class="text-center text-gray-600 mt-3">Available in 1kg and 5kg boxes. Minimum order 5kg total.</p>
+    <div id="productGrid" class="mt-10 grid grid-cols-3 gap-10"></div>
+  </div>
+</section>
+
+<footer id="contact" class="bg-rose-700 text-white py-16">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-3 gap-10">
+    <div><h3 class="font-bold text-lg">Bedi Sweets</h3><p class="text-sm mt-2">Main Market, Amritsar<br/>Since 2005</p></div>
+    <div><h3 class="font-bold text-lg">Information</h3><ul class="mt-2 text-sm space-y-1"><li>Minimum order 5kg</li><li>Delivery available in Amritsar</li><li>No online orders — contact directly</li></ul></div>
+    <div><h3 class="font-bold text-lg">Contact Us</h3><p class="text-sm mt-2">Call / WhatsApp: <span class="font-semibold">+91-9888925640</span></p></div>
+  </div>
+  <div class="mt-12 text-center text-sm text-rose-100">© <span id="year"></span> Bedi Sweets. All rights reserved.</div>
+</footer>
+
+<!-- Floating Inquiry -->
+<div id="inquiryBox" class="fixed bottom-6 right-6 z-50">
+  <button id="toggleForm" class="bg-rose-700 hover:bg-rose-800 text-white font-bold py-3 px-4 rounded-full shadow-lg">Inquiry</button>
+  <div id="formContainer" class="hidden bg-white rounded-xl shadow-2xl p-6 mt-3 w-80">
+    <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Inquiry</h3>
+    <input type="text" id="inquiryName" placeholder="Your Name" class="w-full border p-2 rounded mb-3 text-sm">
+    <input type="text" id="inquiryPhone" placeholder="Phone Number" class="w-full border p-2 rounded mb-3 text-sm">
+    <textarea id="inquiryMessage" placeholder="Your message" class="w-full border p-2 rounded mb-3 text-sm" rows="3"></textarea>
+    <button onclick="sendInquiry()" class="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded text-sm">Send via WhatsApp</button>
+  </div>
+</div>
+
+<div id="confetti"></div>
+
+<script>
+const phoneNumber='919888925640';
+const products=[
+  {id:1,title:'Kaju Barfi',price1kg:740,price5kg:700*5,img:'https://www.cookwithkushi.com/wp-content/uploads/2021/05/kaju_katli_kaju_barfi_recipe.jpg'},
+  {id:2,title:'Milk Cake',price1kg:285,price5kg:253*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFDzaduscbVLnvPZJoRYN4ewjEPAUwWV_l3g&s'},
+  {id:3,title:'Roasted Barfi',price1kg:280,price5kg:255*5,img:'https://img2.exportersindia.com/product_images/bc-full/2021/11/4497324/roasted-bikaneri-burfi-1636092752-6065384.jpeg'},
+  {id:4,title:'Coconut Barfi',price1kg:290,price5kg:260*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP7ebgwfjcrM11ygCRYjy8qiqf5yAJjaklug&s'},
+  {id:5,title:'Patisa',price1kg:180,price5kg:140*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREXfD_iHzn6LdKE3ys1MVJgf41M-AcVHNByQ&s'},
+  {id:6,title:'Wedding Baji',price1kg:200,price5kg:200*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyatzzGJt1N_bKe-15SNBUXa-CMxq-ZOWwUw&s'},
+  {id:7,title:'Dhoda Barfi',price1kg:280,price5kg:250*5,img:'https://www.bbassets.com/media/uploads/p/l/40115582_2-om-sweet-gurgaon-sweets-dhoda-barfi.jpg'},
+  {id:8,title:'Motichoor Laddoo',price1kg:170,price5kg:140*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS90HL1K_oDaxL6HlXHVw6Jf3MyotkKKPN34g&s'},
+  {id:9,title:'Tiranga Laddoo',price1kg:190,price5kg:160*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcjGuxO8kcoV64g5awb0PlfC2DiocWCbzi0g&s'},
+  {id:10,title:'White Barfi (Finger Size)',price1kg:280,price5kg:250*5,img:'https://m.media-amazon.com/images/I/41iaZMUtRwL._UF350,350_QL80_.jpg'},
+  {id:11,title:'Roasted Barfi (Square)',price1kg:285,price5kg:255*5,img:'https://mithaicana.com/cdn/shop/files/order-roasted-barfi-bangalore.jpg?v=1740389221'},
+  {id:12,title:'White Barfi (Square)',price1kg:285,price5kg:255*5,img:'https://www.cookwithnabeela.com/wp-content/uploads/2024/02/MilkBarfi.webp'}
+];
+const productGrid=document.getElementById('productGrid');
+function orderNow(title,boxType,price,quantity){ const total=price*quantity; const msg=`Hello, I want to order ${quantity} ${boxType} of ${title}. Total ₹${total}`; window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`,'_blank'); }
+function renderProducts(){ productGrid.innerHTML=''; products.forEach(p=>{ const card=document.createElement('div'); card.className='bg-white rounded-xl shadow-lg overflow-hidden p-5 hover:shadow-2xl transition transform hover:-translate-y-1'; card.innerHTML=`<img src="${p.img}" alt="${p.title}" class="product-img mb-4"/>
+<h4 class="font-bold text-lg text-gray-800">${p.title}</h4>
+<div class="mt-2 space-y-2">
+<div><p class="text-sm text-gray-600">1kg Box: ₹${p.price1kg}</p>
+<select id="qty1kg-${p.id}" class="mt-1 w-full border rounded-md p-2 text-sm">${Array.from({length:91},(_,i)=>i+10).map(n=>`<option value="${n}">${n} Boxes</option>`).join('')}</select>
+<button onclick="orderNow('${p.title}','1kg',${p.price1kg},document.getElementById('qty1kg-${p.id}').value)" class="mt-2 w-full bg-rose-600 hover:bg-rose-700 text-white py-2 rounded-md text-sm">Order 1kg</button></div>
+<div><p class="text-sm text-gray-600">5kg Box: ₹${p.price5kg}</p>
+<select id="qty5kg-${p.id}" class="mt-1 w-full border rounded-md p-2 text-sm">${Array.from({length:100},(_,i)=>i+1).map(n=>`<option value="${n}">${n} Boxes</option>`).join('')}</select>
+<button onclick="orderNow('${p.title}','5kg',${p.price5kg},document.getElementById('qty5kg-${p.id}').value)" class="mt-2 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md text-sm">Order 5kg</button></div>
+</div>`; productGrid.appendChild(card); }); }
+renderProducts();
+document.getElementById('year').textContent=new Date().getFullYear();
+
+document.getElementById('toggleForm').addEventListener('click',()=>{ document.getElementById('formContainer').classList.toggle('hidden'); });
+function sendInquiry(){ const name=document.getElementById('inquiryName').value.trim(); const phone=document.getElementById('inquiryPhone').value.trim(); const message=document.getElementById('inquiryMessage').value.trim(); if(!name||!phone||!message){alert('Please fill all fields'); return;} const fullMessage=`Inquiry from ${name} (${phone}): ${message}`; window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(fullMessage)}`,'_blank'); }
+
+/* Slider */
+const sliderImages=document.querySelectorAll('.slider img'); let currentSlide=0; setInterval(()=>{ sliderImages[currentSlide].classList.remove('active'); currentSlide=(currentSlide+1)%sliderImages.length; sliderImages[currentSlide].classList.add('active'); },5000);
+
+/* Confetti */
+function createConfetti(){ const confettiContainer=document.getElementById('confetti'); for(let i=0;i<50;i++){ const confetti=document.createElement('div'); confetti.classList.add('confetti-piece'); confetti.style.left=Math.random()*100+'vw'; confetti.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`; confetti.style.animationDuration=(3+Math.random()*2)+'s'; confettiContainer.appendChild(confetti); setTimeout(()=>confetti.remove(),5000); } }
+setInterval(createConfetti,500);
+
+/* Floating Sparkles */
+function createSparkles(){ const sparklesContainer=document.getElementById('sparkles'); for(let i=0;i<30;i++){ const s=document.createElement('div'); s.classList.add('sparkle'); s.style.left=Math.random()*100+'vw'; s.style.top=Math.random()*100+'vh'; s.style.width=2+Math.random()*4+'px'; s.style.height=2+Math.random()*4+'px'; s.style.animationDuration=(2+Math.random()*3)+'s'; sparklesContainer.appendChild(s); setTimeout(()=>s.remove(),5000); } }
+setInterval(createSparkles,500);
+</script>
+</body>
+</html>
