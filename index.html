@@ -391,6 +391,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  /* --- expose to global scope so inline onclick works --- */
+  window.addToCartPrompt = addToCartPrompt;
+  window.addToCart = addToCart;
+  window.removeFromCart = removeFromCart;
+  window.openReviewForm = openReviewForm;
+  window.updateReviews = updateReviews;
+
   /* end script */
 });
 </script>
