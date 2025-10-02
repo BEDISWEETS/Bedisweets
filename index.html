@@ -22,7 +22,7 @@
 <script src="https://cdn.tailwindcss.com" defer></script>
 
 <style>
-/* --- Keep styles as you provided originally, only added a few rules to make banner sparkles visible --- */
+/* --- Keep styles as you provided originally, only added ladi & sprinkar rules --- */
 body { font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #1f2937; background-image: url('https://png.pngtree.com/background/20220723/original/pngtree-background-biru-keren-dan-kosong-abstract-untuk-template-desain-powerpoint-ppt-picture-image_1738466.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; }
 header { background-color: rgba(255,255,255,0.9); backdrop-blur: 5px; }
 
@@ -96,9 +96,113 @@ a:focus, button:focus, select:focus { box-shadow: 0 0 0 3px rgba(249,115,22,0.25
   .product-img, .slider img { transition: none; animation: none; }
   .glow-active { animation: none; }
 }
+
+/* ---------- Festival Flower Ladi (top + left + right) ---------- */
+.flower-ladi-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  z-index: 10000;
+  pointer-events: none;
+}
+.flower-ladi-side {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 10px;
+  z-index: 10000;
+  pointer-events: none;
+  align-items: center;
+}
+.flower-ladi-left { left: 0; }
+.flower-ladi-right { right: 0; }
+
+.flower {
+  width: 44px;
+  height: 44px;
+  background-image: url('https://pngimg.com/uploads/flower/flower_PNG54211.png');
+  background-size: cover;
+  background-position: center;
+  transform-origin: center;
+  animation: swing 2000ms infinite ease-in-out alternate;
+  will-change: transform;
+  opacity: 0.98;
+  filter: drop-shadow(0 6px 6px rgba(0,0,0,0.15));
+}
+
+/* gentle random delays so they sway asynchronously */
+.flower:nth-child(odd) { animation-duration: 2200ms; animation-delay: 120ms; }
+.flower:nth-child(3n)  { animation-duration: 1800ms; animation-delay: 60ms; }
+
+@keyframes swing {
+  0% { transform: rotate(-10deg) translateY(0); }
+  100% { transform: rotate(10deg) translateY(-4px); }
+}
+
+/* ---------- Full-page Sprinkar (falling small flakes across the whole page) ---------- */
+#sprinkar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 9000;
+}
+.sprinkle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.95;
+  animation: sprinkleFall linear forwards;
+  will-change: transform, opacity;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+@keyframes sprinkleFall {
+  0% { transform: translateY(-10px) scale(0.6); opacity: 1; }
+  100% { transform: translateY(110vh) scale(1.2); opacity: 0; }
+}
 </style>
 </head>
 <body class="antialiased">
+
+<!-- ========== Flower Ladi Top & Sides ========== -->
+<div class="flower-ladi-top" aria-hidden="true">
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+</div>
+
+<div class="flower-ladi-side flower-ladi-left" aria-hidden="true">
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+</div>
+
+<div class="flower-ladi-side flower-ladi-right" aria-hidden="true">
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+  <div class="flower" role="img" aria-label="flower"></div>
+</div>
+
+<!-- Sprinkar container -->
+<div id="sprinkar" aria-hidden="true"></div>
 
 <header class="sticky top-0 z-50 shadow-md" role="banner">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -398,7 +502,33 @@ document.addEventListener('DOMContentLoaded', function() {
   window.openReviewForm = openReviewForm;
   window.updateReviews = updateReviews;
 
-  /* end script */
+  /* ---------- Sprinkar (full page small flakes) ---------- */
+  function createSprinkar(count=40){
+    const container=document.getElementById('sprinkar');
+    if(!container) return;
+    for(let i=0;i<count;i++){
+      const s=document.createElement('div');
+      s.className='sprinkle';
+      const size = 2 + Math.random()*6;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = (Math.random()*100) + 'vw';
+      s.style.top = '-10px';
+      // use pleasing bright hues like your sparkles
+      s.style.background = `hsl(${Math.random()*360},90%,70%)`;
+      s.style.animationDuration = (3 + Math.random()*5) + 's';
+      // slight horizontal drift
+      s.style.transform = `translateX(${(Math.random()*40 - 20)}px)`;
+      container.appendChild(s);
+      // remove after 9s to keep DOM clean
+      setTimeout(()=>s.remove(), 9000);
+    }
+  }
+  // seed sprinkar and keep adding periodically
+  createSprinkar(120);
+  setInterval(()=>createSprinkar(18), 900);
+
+  /* end DOMContentLoaded */
 });
 </script>
 
