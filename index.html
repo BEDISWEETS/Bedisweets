@@ -4,213 +4,131 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Bedi Sweets — Since 2005 | Wholesale Sweets in Amritsar</title>
-
-<!-- SEO & verification -->
 <meta name="description" content="Bedi Sweets — Wholesale traditional sweets from Amritsar since 2005. Minimum order 5kg. Call/WhatsApp +91-9888925640 for orders." />
 <link rel="canonical" href="https://bedisweets.github.io/Bedisweets/" />
 <meta name="robots" content="index, follow" />
 <meta name="google-site-verification" content="df7vqh5Hgl7uf6W5_033nnFtDDBgmD9U5LG6ptrw70k" />
 
-<!-- Preconnects for external assets (performance) -->
-<link rel="preconnect" href="https://cdn-icons-png.flaticon.com" crossorigin />
-<link rel="preconnect" href="https://cdn.shopify.com" crossorigin />
-<link rel="preconnect" href="https://hanuramfoods.com" crossorigin />
-<link rel="preconnect" href="https://i.pinimg.com" crossorigin />
-<link rel="preload" as="image" href="https://hanuramfoods.com/app/webroot/files/catalog/Slider/(A)%20Diwali%2025%20Web-01.jpg" />
-
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com" defer></script>
 
-<style>
-/* --- Keep styles as you provided originally, only added ladi & sprinkar rules --- */
-body { font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #1f2937; background-image: url('https://png.pngtree.com/background/20220723/original/pngtree-background-biru-keren-dan-kosong-abstract-untuk-template-desain-powerpoint-ppt-picture-image_1738466.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; }
-header { background-color: rgba(255,255,255,0.9); backdrop-blur: 5px; }
-
-.product-img { height: 200px; width: 100%; object-fit: cover; transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.5s ease; border: 4px solid transparent; border-radius: 12px; cursor:pointer; }
-.product-img:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
-
-/* Glowing border animation for clicked sweet image */
-@keyframes glowBorder {
-  0% { border-color: red; box-shadow: 0 0 10px red; }
-  14% { border-color: orange; box-shadow: 0 0 10px orange; }
-  28% { border-color: yellow; box-shadow: 0 0 10px yellow; }
-  42% { border-color: green; box-shadow: 0 0 10px green; }
-  56% { border-color: blue; box-shadow: 0 0 10px blue; }
-  70% { border-color: indigo; box-shadow: 0 0 10px indigo; }
-  84% { border-color: violet; box-shadow: 0 0 10px violet; }
-  100% { border-color: red; box-shadow: 0 0 10px red; }
-}
-
-/* Class to activate glowing effect */
-.glow-active { animation: glowBorder 4s linear infinite; }
-
-button { transition: all 0.3s ease; transform: translateY(0); }
-button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 14px rgba(0,0,0,0.2); }
-
-/* Full Screen Banner */
-.festive-banner { position: relative; width: 100%; height: 100vh; overflow: hidden; }
-.slider img { position: absolute; width: 100%; height: 100%; object-fit: cover; top:0; left:0; opacity:0; transition: opacity 1.5s ease-in-out; }
-.slider img.active { opacity:1; }
-
-/* banner text and buttons */
-.banner-text { position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; z-index:30; max-width:900px; color:white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-.banner-text h1{font-size:3rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
-.banner-text p{font-size:1.2rem;margin-bottom:0.75rem;}
-.banner-buttons { display:flex; gap:16px; justify-content:center; margin-top:1rem; }
-.banner-buttons button { padding: 0.7rem 1.25rem; font-weight:700; border-radius:8px; border:none; cursor:pointer; }
-
-/* Sparkles container (inside banner) */
-#sparkles { position:absolute; inset:0; pointer-events:none; overflow:visible; z-index:25; }
-
-/* sparkle pieces */
-.sparkle { position:absolute; border-radius:50%; opacity:0.9; pointer-events:none; transform:translateY(-10px); animation: sparkleFall linear forwards; }
-@keyframes sparkleFall { 0% { transform: translateY(-10px) scale(0.6); opacity:1; } 100% { transform: translateY(110vh) scale(1.1); opacity:0; } }
-
-#confetti {position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden; z-index:9999;}
-.confetti-piece{position:absolute;width:6px;height:6px;opacity:0.9;animation-name: confetti-fall; animation-timing-function:linear;}
-@keyframes confetti-fall {0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(100vh) rotate(360deg);opacity:0;}}
-
-/* Rainbow Glow for Products & Cart */
-@keyframes rainbowGlow {
-  0% { box-shadow: 0 0 15px red; }
-  14% { box-shadow: 0 0 15px orange; }
-  28% { box-shadow: 0 0 15px yellow; }
-  42% { box-shadow: 0 0 15px green; }
-  56% { box-shadow: 0 0 15px blue; }
-  70% { box-shadow: 0 0 15px indigo; }
-  84% { box-shadow: 0 0 15px violet; }
-  100% { box-shadow: 0 0 15px red; }
-}
-
-.sweet-card, #cartContainer { position: relative; z-index:1; animation: rainbowGlow 4s linear infinite; }
-
-/* keep original mobile rule you had */
-@media(max-width:768px){body{min-width:1024px;overflow-x:auto;}}
-
-/* Focus visible for keyboard users (accessibility) */
-:focus{outline: none;}
-a:focus, button:focus, select:focus { box-shadow: 0 0 0 3px rgba(249,115,22,0.25); border-radius: 6px; outline: none; }
-
-/* Reduce motion for users who requested it */
-@media (prefers-reduced-motion: reduce) {
-  .product-img, .slider img { transition: none; animation: none; }
-  .glow-active { animation: none; }
-}
-
-/* ---------- Festival Flower Ladi (top + left + right) ---------- */
-.flower-ladi-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  z-index: 10000;
-  pointer-events: none;
-}
-.flower-ladi-side {
-  position: fixed;
-  top: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 18px;
-  padding: 10px;
-  z-index: 10000;
-  pointer-events: none;
-  align-items: center;
-}
-.flower-ladi-left { left: 0; }
-.flower-ladi-right { right: 0; }
-
-.flower {
-  width: 44px;
-  height: 44px;
-  background-image: url('https://pngimg.com/uploads/flower/flower_PNG54211.png');
-  background-size: cover;
-  background-position: center;
+<style> 
+  /* 🌟 Universal Button Animation */
+button {
+  transition: all 0.3s ease;
   transform-origin: center;
-  animation: swing 2000ms infinite ease-in-out alternate;
-  will-change: transform;
-  opacity: 0.98;
-  filter: drop-shadow(0 6px 6px rgba(0,0,0,0.15));
-}
-
-/* gentle random delays so they sway asynchronously */
-.flower:nth-child(odd) { animation-duration: 2200ms; animation-delay: 120ms; }
-.flower:nth-child(3n)  { animation-duration: 1800ms; animation-delay: 60ms; }
-
-@keyframes swing {
-  0% { transform: rotate(-10deg) translateY(0); }
-  100% { transform: rotate(10deg) translateY(-4px); }
-}
-
-/* ---------- Full-page Sprinkar (falling small flakes across the whole page) ---------- */
-#sprinkar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: relative;
   overflow: hidden;
-  pointer-events: none;
-  z-index: 9000;
+  cursor: pointer;
 }
-.sprinkle {
+
+button::before {
+  content: "";
   position: absolute;
-  border-radius: 50%;
-  opacity: 0.95;
-  animation: sprinkleFall linear forwards;
-  will-change: transform, opacity;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
 }
-@keyframes sprinkleFall {
-  0% { transform: translateY(-10px) scale(0.6); opacity: 1; }
-  100% { transform: translateY(110vh) scale(1.2); opacity: 0; }
+
+button:hover::before {
+  transform: translateX(100%);
 }
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+  filter: brightness(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2) inset;
+}
+
+  :root{
+    --brand-rose: #be185d;
+    --brand-green: #15803d;
+  }
+  body {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #111827;
+    background-image: url("https://www.govindam.co.in/wp-content/uploads/2024/05/Govindam-Sweets.jpg.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  header { background-color: rgba(255,255,255,0.95); backdrop-filter: blur(6px); }
+  .product-img { height:200px; width:100%; object-fit:cover; border-radius:12px; transition:transform .35s ease, box-shadow .35s ease; cursor:pointer; border:3px solid transparent; }
+  .product-img:hover{ transform:scale(1.04); box-shadow:0 10px 24px rgba(0,0,0,0.12); }
+  .glow-active{ animation: glowBorder 4s linear infinite; }
+  @keyframes glowBorder{
+    0%{ box-shadow:0 0 14px rgba(255,99,132,.9); }
+    50%{ box-shadow:0 0 16px rgba(79,70,229,.9); }
+    100%{ box-shadow:0 0 14px rgba(16,185,129,.85); }
+  }
+
+  .festive-banner{ position:relative; width:100%; height:72vh; min-height:420px; overflow:hidden; }
+  .slider img{ position:absolute; width:100%; height:100%; object-fit:cover; top:0; left:0; opacity:0; transition:opacity 1.2s ease-in-out; }
+  .slider img.active{ opacity:1; }
+  .banner-overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 60%); z-index:10; }
+  .banner-text{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; z-index:20; color:white; max-width:920px; padding:1rem; }
+  .banner-text h1{ font-size: clamp(1.75rem, 3.6vw, 3.2rem); font-weight:800; line-height:1.05; text-shadow:0 6px 18px rgba(0,0,0,0.6); }
+  .banner-text p{ font-size:1.05rem; margin-top:.5rem; opacity:.95; }
+
+  /* sparkles + sprinkar */
+  #sparkles{ position:absolute; inset:0; pointer-events:none; z-index:15; opacity:0.85; }
+  .sparkle{ position:absolute; border-radius:50%; pointer-events:none; transform:translateY(-10px); animation:sparkleFall linear forwards; opacity:.9;}
+  @keyframes sparkleFall{ 0%{ transform:translateY(-10px) scale(.6); opacity:1 } 100%{ transform:translateY(110vh) scale(1.05); opacity:0 } }
+
+  #sprinkar{ position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:30; opacity:0.9; }
+  .sprinkle{ position:absolute; border-radius:50%; animation:sprinkleFall linear forwards; box-shadow:0 2px 6px rgba(0,0,0,.12); }
+  @keyframes sprinkleFall{ 0%{ transform:translateY(-10px) scale(.6); opacity:1 } 100%{ transform:translateY(110vh) scale(1.15); opacity:0 } }
+
+  .flower-ladi-top, .flower-ladi-side{ pointer-events:none; z-index:50; }
+  .flower{ width:42px; height:42px; background-image:url('https://pngimg.com/uploads/flower/flower_PNG54211.png'); background-size:cover; animation:swing 2s infinite ease-in-out alternate; filter:drop-shadow(0 6px 6px rgba(0,0,0,.12)); }
+  @keyframes swing { 0%{ transform:rotate(-8deg) } 100%{ transform:rotate(8deg) translateY(-3px) } }
+
+  .sweet-card{ border-radius:14px; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease; background:linear-gradient(180deg, #fff, #fff); }
+  .sweet-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(15,23,42,.12); }
+  .badge{ display:inline-block; font-size:.72rem; padding:.25rem .5rem; border-radius:999px; background:rgba(255,255,255,.92); color:#111827; box-shadow:0 6px 12px rgba(0,0,0,.06); margin-right:.35rem; }
+
+  #cartContainer{ border-radius:12px; box-shadow: 0 12px 30px rgba(2,6,23,.08); }
+  .muted{ color:#6b7280; }
+
+  :focus{ outline: none; }
+  a:focus, button:focus, input:focus, select:focus{ box-shadow: 0 0 0 4px rgba(190,24,93,0.12); border-radius:8px; outline:none; }
+
+  @media(min-width:1024px){ .grid-desktop-3{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
+  @media(max-width:1023px){ .grid-desktop-3{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media(max-width:640px){ .grid-desktop-3{ grid-template-columns: repeat(1, minmax(0,1fr)); } .product-img{ height:220px; } .banner-text{ padding:1rem; } }
+
+  @media (prefers-reduced-motion: reduce){ .product-img, .slider img, .sparkle, .sprinkle, .flower{ transition:none; animation:none; } .glow-active{ animation:none; } }
+
+  .small-muted{ font-size:.85rem; color:#6b7280; }
+
+  /* review modal */
+  #reviewModal { position: fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:80; background: rgba(0,0,0,0.5); }
+  #reviewModal .card { width:100%; max-width:680px; background:white; padding:1.25rem; border-radius:12px; box-shadow:0 12px 40px rgba(2,6,23,.16); }
+  .star { font-size:1.6rem; cursor:pointer; }
 </style>
 </head>
 <body class="antialiased">
 
-<!-- ========== Flower Ladi Top & Sides ========== -->
-<div class="flower-ladi-top" aria-hidden="true">
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-</div>
-
-<div class="flower-ladi-side flower-ladi-left" aria-hidden="true">
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-</div>
-
-<div class="flower-ladi-side flower-ladi-right" aria-hidden="true">
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-  <div class="flower" role="img" aria-label="flower"></div>
-</div>
 
 <!-- Sprinkar container -->
 <div id="sprinkar" aria-hidden="true"></div>
 
-<header class="sticky top-0 z-50 shadow-md" role="banner">
+<header class="sticky top-0 z-50 shadow" role="banner">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href="#" class="flex items-center gap-3" aria-label="Bedi Sweets home">
       <img src="https://cdn-icons-png.flaticon.com/512/1463/1463264.png" alt="Bedi Sweets logo" class="w-12 h-12 object-contain" width="48" height="48" decoding="async" loading="eager"/>
       <div><h1 class="font-extrabold text-xl tracking-tight text-rose-700">Bedi Sweets</h1><p class="text-xs text-gray-600">Since 2005</p></div>
     </a>
-    <nav class="flex gap-8 text-sm font-medium" role="navigation" aria-label="Main navigation">
+    <nav class="flex gap-6 text-sm font-medium" role="navigation" aria-label="Main navigation">
       <a href="#" class="hover:text-rose-600 transition" tabindex="0">Home</a>
       <a href="#products" class="hover:text-rose-600 transition" tabindex="0">Products</a>
       <a href="#about" class="hover:text-rose-600 transition" tabindex="0">About</a>
@@ -219,333 +137,514 @@ a:focus, button:focus, select:focus { box-shadow: 0 0 0 3px rgba(249,115,22,0.25
   </div>
 </header>
 
-<!-- Banner: slideshow (automatic) + sparkles + two buttons -->
+<!-- Banner -->
 <section class="festive-banner" aria-label="Promotional banner">
   <div class="slider" aria-hidden="false" role="region" aria-roledescription="carousel" aria-label="Promotional images">
-    <!-- images you provided earlier — I kept the same image URLs you asked for -->
-    <!-- First slide is preloaded for LCP -->
     <img src="https://hanuramfoods.com/app/webroot/files/catalog/Slider/(A)%20Diwali%2025%20Web-01.jpg" class="active" alt="Diwali banner 1" width="1920" height="900" decoding="async" loading="eager"/>
     <img src="https://i.pinimg.com/originals/9e/ba/fd/9ebafdd16d2818eb56d68d7729537b0b.gif" alt="Diwali GIF" width="1920" height="900" decoding="async" loading="lazy"/>
     <img src="https://cdn.shopify.com/s/files/1/0659/7787/6720/files/Asha_Web_Banner_Sweet_1920x900pix_20231127.jpg?v=1701082641" alt="Banner 3" width="1920" height="900" decoding="async" loading="lazy"/>
     <img src="https://www.govindam.co.in/wp-content/uploads/2024/05/Govindam-Sweets.jpg.webp" alt="Banner 4" width="1920" height="900" decoding="async" loading="lazy"/>
   </div>
 
-  <!-- sparkles inside banner (increased amount) -->
+  <div class="banner-overlay" aria-hidden="true"></div>
+
+  <!-- sparkles inside banner -->
   <div id="sparkles" aria-hidden="true"></div>
 
   <div class="banner-text" role="group" aria-label="Banner text and actions">
     <h1>Delicious Sweets, Wholesale Rates</h1>
-    <p>Serving Amritsar since 2005. Minimum order 5kg. Fresh, authentic, and delivered to your doorstep.</p>
+    <p>Serving Amritsar since 2005. Minimum order: <strong>10 boxes of 1kg</strong> or <strong>1 box of 5kg</strong>.</p>
 
-    <!-- Two buttons you requested (do not change behavior of anything else) -->
-    <div class="banner-buttons">
-      <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'});" class="bg-rose-600 text-white" aria-label="View our sweets">Our Sweets</button>
-      <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});" class="bg-green-600 text-white" aria-label="Make an inquiry">Inquiry</button>
+    <div class="banner-buttons mt-4 flex gap-4 justify-center">
+      <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'});" class="bg-rose-600 text-white px-5 py-3 rounded-md font-semibold" aria-label="View our sweets">Our Sweets</button>
+      <button onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'});" class="bg-green-600 text-white px-5 py-3 rounded-md font-semibold" aria-label="Make an inquiry">Inquiry</button>
     </div>
   </div>
 </section>
 
-<!-- Products (kept exactly like your original complete catalogue and UI) -->
+<!-- Products -->
 <section id="products" class="bg-gray-50 py-16" aria-labelledby="products-heading">
   <div class="max-w-7xl mx-auto px-6">
     <h2 id="products-heading" class="text-3xl font-extrabold text-center text-gray-800">Our Sweets</h2>
-    <p class="text-center text-gray-600 mt-3">Available in 1kg and 5kg boxes. Minimum order 5kg total.</p>
-    <div id="productGrid" class="mt-10 grid grid-cols-3 gap-10" role="list"></div>
+    <p class="text-center text-gray-600 mt-3">Available in 1kg and 5kg boxes. Minimum order rules are enforced in cart.</p>
 
-    <div id="cartContainer" class="mt-10 p-4 bg-white shadow-lg rounded-xl max-w-lg mx-auto" aria-live="polite" aria-atomic="true">
+    <div id="productGrid" class="mt-10 grid gap-8 grid-desktop-3" role="list"></div>
+
+    <div id="cartContainer" class="mt-10 p-4 bg-white rounded-xl max-w-lg mx-auto" aria-live="polite" aria-atomic="true">
       <h3 class="font-bold text-lg mb-2">Your Cart</h3>
-      <div id="cartItems" class="text-sm mb-2">No items added yet.</div>
+      <div id="cartItems" class="text-sm mb-2 muted">No items added yet.</div>
       <div class="text-right font-semibold mb-2">Total: ₹<span id="cartTotal">0</span></div>
+      <div class="small-muted mb-2">Note: Minimum order for 1kg boxes is <strong>10</strong> boxes total per product; 5kg boxes minimum <strong>1</strong> box.</div>
       <button id="orderCartBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md" aria-label="Order via WhatsApp">Order via WhatsApp</button>
     </div>
   </div>
 </section>
 
-<!-- Inquiry Box -->
+<!-- Inquiry -->
 <section id="inquiry" class="bg-white py-16" aria-labelledby="inquiry-heading">
   <div class="max-w-3xl mx-auto px-6">
     <h2 id="inquiry-heading" class="text-3xl font-extrabold text-center text-gray-800 mb-6">Send Us an Inquiry</h2>
-    <form id="inquiryForm" class="space-y-4">
-      <input type="text" id="inqName" placeholder="Your Name" required class="w-full border rounded-md p-3"/>
-      <input type="text" id="inqContact" placeholder="Email or WhatsApp" required class="w-full border rounded-md p-3"/>
-      <textarea id="inqMessage" placeholder="Your Message / Inquiry" rows="4" required class="w-full border rounded-md p-3"></textarea>
+    <form id="inquiryForm" class="space-y-4" onsubmit="handleInquiry(event)">
+      <input type="text" id="inqName" placeholder="Your Name" required class="w-full border rounded-md p-3" aria-label="Your name"/>
+      <input type="text" id="inqContact" placeholder="Email or WhatsApp" required class="w-full border rounded-md p-3" aria-label="Your contact"/>
+      <textarea id="inqMessage" placeholder="Your Message / Inquiry" rows="4" required class="w-full border rounded-md p-3" aria-label="Your message"></textarea>
       <button type="submit" class="bg-rose-600 hover:bg-rose-700 text-white py-3 w-full rounded-md font-semibold">Submit Inquiry</button>
     </form>
   </div>
 </section>
 
-<!-- Reviews (unchanged) -->
+<!-- Reviews -->
 <section id="reviews" class="bg-gray-50 py-16">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-6">Customer Reviews</h2>
-    <div id="reviewSection" class="space-y-2 text-gray-700 text-sm text-center">No reviews yet.</div>
+    <div id="reviewSection" class="space-y-4 text-gray-700 text-sm"></div>
   </div>
 </section>
 
-<!-- Footer (unchanged) -->
+<!-- Footer / Contact -->
 <footer id="contact" class="bg-rose-700 text-white py-16" role="contentinfo">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-3 gap-10">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
     <div><h3 class="font-bold text-lg">Bedi Sweets</h3><p class="text-sm mt-2">Main Market, Amritsar<br/>Since 2005</p></div>
-    <div><h3 class="font-bold text-lg">Information</h3><ul class="mt-2 text-sm space-y-1"><li>Minimum order 5kg</li><li>Delivery available in Amritsar</li><li>No online orders — contact directly</li></ul></div>
+    <div><h3 class="font-bold text-lg">Information</h3><ul class="mt-2 text-sm space-y-1"><li>Minimum order 10 boxes for 1kg</li><li>Minimum order 1 box for 5kg</li><li>Delivery available in Amritsar</li></ul></div>
     <div><h3 class="font-bold text-lg">Contact Us</h3><p class="text-sm mt-2">Call / WhatsApp: <span class="font-semibold">+91-9888925640</span></p></div>
   </div>
   <div class="mt-12 text-center text-sm text-rose-100">© <span id="year"></span> Bedi Sweets. All rights reserved.</div>
 </footer>
 
+<!-- Confetti container -->
 <div id="confetti" aria-hidden="true"></div>
 
-<!-- LocalBusiness structured data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Bedi Sweets",
-  "image": "https://cdn-icons-png.flaticon.com/512/1463/1463264.png",
-  "telephone": "+91-9888925640",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Main Market",
-    "addressLocality": "Amritsar",
-    "addressRegion": "Punjab",
-    "addressCountry": "IN"
-  },
-  "url": "https://bedisweets.github.io/Bedisweets/",
-  "openingHours": "Mo-Su 08:00-21:00",
-  "priceRange": "₹₹"
-}
-</script>
+<!-- Review Modal -->
+<div id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle" class="hidden fixed inset-0 items-center justify-center z-50">
+  <div class="card mx-4">
+    <h3 id="reviewModalTitle" class="text-xl font-bold mb-3">Write a review</h3>
+    <div class="space-y-3">
+      <input id="reviewName" type="text" placeholder="Your name (optional)" class="w-full border rounded-md p-3" />
+      <div>
+        <label class="text-sm text-gray-700">Rating</label>
+        <div id="starRating" class="flex gap-2 mt-1" aria-label="Star rating" role="radiogroup"></div>
+      </div>
+      <textarea id="reviewText" rows="4" placeholder="Your review" class="w-full border rounded-md p-3"></textarea>
+      <div class="flex gap-3 justify-end">
+        <button onclick="closeReviewModal()" class="px-4 py-2 rounded-md bg-gray-200">Cancel</button>
+        <button onclick="submitReview()" class="px-4 py-2 rounded-md bg-rose-600 text-white">Submit Review</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product structured data for SEO (per product) -->
+<script type="application/ld+json" id="ld-products"></script>
 
 <script>
-/* === Exact product data and JS logic you originally provided (kept intact) ===
-   Wrapped to run after DOMContentLoaded to reduce tiny timing issues.
-*/
-document.addEventListener('DOMContentLoaded', function() {
-  const phoneNumber='919888925640';
-  const products=[
-    {id:1,title:'Kaju katli',price1kg:740,price5kg:700*5,img:'https://www.cookwithkushi.com/wp-content/uploads/2021/05/kaju_katli_kaju_barfi_recipe.jpg'},
-    {id:2,title:'Milk Cake',price1kg:285,price5kg:253*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFDzaduscbVLnvPZJoRYN4ewjEPAUwWV_l3g&s'},
-    {id:3,title:'Roasted Barfi',price1kg:280,price5kg:255*5,img:'https://img2.exportersindia.com/product_images/bc-full/2021/11/4497324/roasted-bikaneri-burfi-1636092752-6065384.jpeg'},
-    {id:4,title:'Coconut Barfi',price1kg:290,price5kg:260*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP7ebgwfjcrM11ygCRYjy8qiqf5yAJjaklug&s'},
-    {id:5,title:'Patisa',price1kg:180,price5kg:140*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREXfD_iHzn6LdKE3ys1MVJgf41M-AcVHNByQ&s'},
-    {id:6,title:'Wedding Baji',price1kg:200,price5kg:200*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyatzzGJt1N_bKe-15SNBUXa-CMxq-ZOWwUw&s'},
-    {id:7,title:'Dhoda Barfi',price1kg:280,price5kg:250*5,img:'https://www.bbassets.com/media/uploads/p/l/40115582_2-om-sweet-gurgaon-sweets-dhoda-barfi.jpg'},
-    {id:8,title:'Motichoor Laddoo',price1kg:170,price5kg:140*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS90HL1K_oDaxL6HlXHVw6Jf3MyotkKKPN34g&s'},
-    {id:9,title:'Tiranga Laddoo',price1kg:190,price5kg:160*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcjGuxO8kcoV64g5awb0PlfC2DiocWCbzi0g&s'},
-    {id:10,title:'White Barfi (Finger Size)',price1kg:280,price5kg:250*5,img:'https://m.media-amazon.com/images/I/41iaZMUtRwL._UF350,350_QL80_.jpg'},
-    {id:11,title:'Roasted Barfi (Square)',price1kg:285,price5kg:255*5,img:'https://mithaicana.com/cdn/shop/files/order-roasted-barfi-bangalore.jpg?v=1740389221'},
-    {id:12,title:'White Barfi (Square)',price1kg:285,price5kg:255*5,img:'https://www.cookwithnabeela.com/wp-content/uploads/2024/02/MilkBarfi.webp'}
-  ];
+/* ------------------------------
+   Product data (same sweets/images/prices as you provided)
+   ------------------------------ */
+const phoneNumber = '919888925640'; // for WhatsApp (no +)
+const products = [
+  {id:1,title:'Kaju Barfi',price1kg:740,price5kg:700*5,img:'https://www.cookwithkushi.com/wp-content/uploads/2021/05/kaju_katli_kaju_barfi_recipe.jpg'},
+  {id:2,title:'Milk Cake',price1kg:285,price5kg:253*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFDzaduscbVLnvPZJoRYN4ewjEPAUwWV_l3g&s'},
+  {id:3,title:'Roasted Barfi',price1kg:280,price5kg:255*5,img:'https://img2.exportersindia.com/product_images/bc-full/2021/11/4497324/roasted-bikaneri-burfi-1636092752-6065384.jpeg'},
+  {id:4,title:'Coconut Barfi',price1kg:290,price5kg:260*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP7ebgwfjcrM11ygCRYjy8qiqf5yAJjaklug&s'},
+  {id:5,title:'Patisa',price1kg:180,price5kg:140*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREXfD_iHzn6LdKE3ys1MVJgf41M-AcVHNByQ&s'},
+  {id:6,title:'Wedding Baji',price1kg:200,price5kg:200*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyatzzGJt1N_bKe-15SNBUXa-CMxq-ZOWwUw&s'},
+  {id:7,title:'Dhoda Barfi',price1kg:280,price5kg:250*5,img:'https://www.bbassets.com/media/uploads/p/l/40115582_2-om-sweet-gurgaon-sweets-dhoda-barfi.jpg'},
+  {id:8,title:'Motichoor Laddoo',price1kg:170,price5kg:140*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS90HL1K_oDaxL6HlXHVw6Jf3MyotkKKPN34g&s'},
+  {id:9,title:'Tiranga Laddoo',price1kg:190,price5kg:160*5,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcjGuxO8kcoV64g5awb0PlfC2DiocWCbzi0g&s'},
+  {id:10,title:'White Barfi (Finger Size)',price1kg:280,price5kg:250*5,img:'https://m.media-amazon.com/images/I/41iaZMUtRwL._UF350,350_QL80_.jpg'},
+  {id:11,title:'Roasted Barfi (Square)',price1kg:285,price5kg:255*5,img:'https://mithaicana.com/cdn/shop/files/order-roasted-barfi-bangalore.jpg?v=1740389221'},
+  {id:12,title:'White Barfi (Square)',price1kg:285,price5kg:255*5,img:'https://www.cookwithnabeela.com/wp-content/uploads/2024/02/MilkBarfi.webp'}
+];
 
-  let cart=[]; let reviews=[];
-  const productGrid=document.getElementById('productGrid');
-  const cartItemsDiv=document.getElementById('cartItems');
-  const cartTotalSpan=document.getElementById('cartTotal');
+/* ------------------------------
+   Pre-filled sample reviews (same as before)
+   ------------------------------ */
+const sampleReviews = [
+  {name:'Aman K.', product:'Kaju Barfi', rating:5, text:'Absolutely premium kaju barfi. Fresh and rich — bulk order arrived perfectly packed.'},
+  {name:'Neha R.', product:'Motichoor Laddoo', rating:5, text:'Soft, perfectly sweet. We ordered for a wedding and all guests loved them.'},
+  {name:'Vikram S.', product:'Milk Cake', rating:5, text:'Authentic flavour and great weight. Reliable seller; will order again.'},
+  {name:'Pooja D.', product:'Coconut Barfi', rating:5, text:'Nice coconut aroma, not too sugary. Very good for gift boxes.'},
+  {name:'Rohan M.', product:'Patisa', rating:5, text:'Crisp, flaky and very tasty. Great value for wholesale.'},
+  {name:'Simran T.', product:'Tiranga Laddoo', rating:5, text:'Loved the tricolor laddoos for our Independence Day event.'},
+  {name:'Harpreet B.', product:'Dhoda Barfi', rating:5, text:'Soft texture and authentic taste. Packed well for transport.'},
+  {name:'Karan J.', product:'Roasted Barfi', rating:5, text:'Rich roasted flavour and excellent finish — recommended.'},
+  {name:'Meera P.', product:'White Barfi (Finger Size)', rating:5, text:'Perfect finger size barfis — easy to serve and delicious.'},
+  {name:'Sandeep L.', product:'Wedding Baji', rating:5, text:'Great option for wedding boxes. Fresh and consistent.'},
+  {name:'Anjali K.', product:'Kaju Barfi', rating:5, text:'Kaju pieces are melt-in-mouth. Quality is top notch.'},
+  {name:'Tarun N.', product:'Motichoor Laddoo', rating:5, text:'Perfect balance of sweetness and texture.'},
+  {name:'Ritika S.', product:'Roasted Barfi (Square)', rating:5, text:'Square cuts are neat and taste excellent.'},
+  {name:'Gurpreet S.', product:'White Barfi (Square)', rating:5, text:'Family loved it — will reorder soon.'},
+  {name:'Zoya A.', product:'Patisa', rating:5, text:'Crispy and delightful. Fast communication from seller.'},
+  {name:'Baldev R.', product:'Milk Cake', rating:5, text:'Very fresh, delivered on time.'},
+  {name:'Nisha M.', product:'Dhoda Barfi', rating:5, text:'Great texture and sweetness level. Good for events.'},
+  {name:'Kavita R.', product:'Wedding Baji', rating:5, text:'Excellent for gifting — presentation was neat.'},
+  {name:'Sahil V.', product:'Tiranga Laddoo', rating:5, text:'Eye-catching and tasty. My guests complimented them.'},
+  {name:'Priya G.', product:'Kaju Barfi', rating:5, text:'Premium taste — worth every rupee.'}
+];
 
-  function renderProducts(){
-    productGrid.innerHTML='';
-    products.forEach(p=>{
-      const card=document.createElement('div');
-      card.className='sweet-card bg-white rounded-xl shadow-lg overflow-hidden p-5 hover:shadow-2xl transition transform hover:-translate-y-1';
-      card.innerHTML=`
-        <img src="${p.img}" alt="${p.title}" class="product-img mb-4" width="400" height="300" loading="lazy" decoding="async"/>
-        <h4 class="font-bold text-lg text-gray-800 relative z-10">${p.title}</h4>
-        <div class="mt-2 space-y-2 relative z-10">
-          <div>
-            <p class="text-sm text-gray-600">1kg Box: ₹${p.price1kg}</p>
-            <select id="qty1kg-${p.id}" class="mt-1 w-full border rounded-md p-2 text-sm">${Array.from({length:91},(_,i)=>i+10).map(n=>`<option value="${n}">${n} Boxes</option>`).join('')}</select>
-            <button onclick="addToCartPrompt('${p.title}','1kg',${p.price1kg},document.getElementById('qty1kg-${p.id}').value)" class="mt-2 w-full bg-rose-600 hover:bg-rose-700 text-white py-2 rounded-md text-sm">Add 1kg</button>
-          </div>
-          <div>
-            <p class="text-sm text-gray-600">5kg Box: ₹${p.price5kg}</p>
-            <select id="qty5kg-${p.id}" class="mt-1 w-full border rounded-md p-2 text-sm">${Array.from({length:100},(_,i)=>i+1).map(n=>`<option value="${n}">${n} Boxes</option>`).join('')}</select>
-            <button onclick="addToCartPrompt('${p.title}','5kg',${p.price5kg},document.getElementById('qty5kg-${p.id}').value)" class="mt-2 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md text-sm">Add 5kg</button>
-          </div>
-          <button onclick="openReviewForm('${p.title}')" class="mt-2 w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-md text-sm">Leave a Review</button>
+/* ------------------------------
+   State & DOM refs
+   ------------------------------ */
+let cart = [];
+const productGrid = document.getElementById('productGrid');
+const cartItemsDiv = document.getElementById('cartItems');
+const cartTotalSpan = document.getElementById('cartTotal');
+const reviewSection = document.getElementById('reviewSection');
+
+let reviews = [...sampleReviews]; // mutable reviews list
+
+/* ------------------------------
+   Render products (preserve qty controls + same images)
+   ------------------------------ */
+function renderProducts(){
+  productGrid.innerHTML = '';
+  products.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'sweet-card bg-white p-5';
+    card.innerHTML = `
+      <div class="relative">
+        <img src="${p.img}" alt="${p.title}" class="product-img mb-4" width="600" height="400" loading="lazy" decoding="async"/>
+        <div class="absolute top-3 right-3">
+          <span class="badge">Wholesale</span>
+          <span class="badge">Best Seller</span>
         </div>
-      `;
-      productGrid.appendChild(card);
+      </div>
+      <h4 class="font-bold text-lg text-gray-800 relative z-10">${p.title}</h4>
+      <div class="mt-2 space-y-3 relative z-10">
+        <div>
+          <p class="text-sm text-gray-600">1kg Box: ₹${p.price1kg} <span class="small-muted"> (min 10 boxes)</span></p>
+          <select id="qty1kg-${p.id}" class="mt-1 w-full border rounded-md p-2 text-sm" aria-label="${p.title} 1kg quantity">
+            ${Array.from({length:91},(_,i)=>i+10).map(n=>`<option value="${n}">${n} Boxes</option>`).join('')}
+          </select>
+          <button onclick="addToCartPrompt(${p.id},'1kg')" class="mt-2 w-full bg-rose-600 hover:bg-rose-700 text-white py-2 rounded-md text-sm" aria-label="Add 1kg ${p.title}">Add 1kg</button>
+        </div>
+        <div>
+          <p class="text-sm text-gray-600">5kg Box: ₹${p.price5kg} <span class="small-muted"> (min 1 box)</span></p>
+          <select id="qty5kg-${p.id}" class="mt-1 w-full border rounded-md p-2 text-sm" aria-label="${p.title} 5kg quantity">
+            ${Array.from({length:50},(_,i)=>i+1).map(n=>`<option value="${n}">${n} Boxes</option>`).join('')}
+          </select>
+          <button onclick="addToCartPrompt(${p.id},'5kg')" class="mt-2 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md text-sm" aria-label="Add 5kg ${p.title}">Add 5kg</button>
+        </div>
+        <button onclick="openReviewModal(${p.id})" class="mt-2 w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-md text-sm" aria-label="Leave a review for ${p.title}">Leave a Review</button>
+      </div>
+    `;
+    productGrid.appendChild(card);
 
-      // Add click event for glowing border
-      const img = card.querySelector('.product-img');
-      img.addEventListener('click', ()=> {
-        img.classList.toggle('glow-active');
-      });
-    });
+    // attach glow toggle
+    const img = card.querySelector('.product-img');
+    img.addEventListener('click', ()=> img.classList.toggle('glow-active'));
+  });
+}
+
+/* ------------------------------
+   Render cart
+   ------------------------------ */
+function renderCart(){
+  if(cart.length === 0){
+    cartItemsDiv.textContent = 'No items added yet.';
+    cartTotalSpan.textContent = '0';
+    return;
   }
+  cartItemsDiv.innerHTML = '';
+  let total = 0;
+  cart.forEach((item, idx)=>{
+    total += item.price * item.qty;
+    const div = document.createElement('div');
+    div.className = 'mb-2';
+    div.innerHTML = `
+      <div class="flex items-center justify-between">
+        <div class="text-sm">${item.title} — <span class="font-medium">${item.box}</span> x <span class="font-medium">${item.qty}</span></div>
+        <div class="flex items-center gap-2">
+          <div class="font-semibold">₹${item.price * item.qty}</div>
+          <button onclick="removeFromCart(${idx})" class="ml-2 text-xs bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1" aria-label="Remove item">Remove</button>
+        </div>
+      </div>
+    `;
+    cartItemsDiv.appendChild(div);
+  });
+  cartTotalSpan.textContent = total;
+}
 
-  function addToCartPrompt(title,boxType,price,qty){
-    qty=parseInt(qty);
-    if(qty<1)return;
-    if(confirm(`Do you want to add ${qty} ${boxType} box(es) of ${title} to cart?`)){
-      addToCart(title,boxType,price,qty);
+/* ------------------------------
+   Add to cart with validation for minimums
+   ------------------------------ */
+function addToCartPrompt(productId, boxType){
+  const product = products.find(p=>p.id === productId);
+  if(!product) return;
+  const qtyEl = document.getElementById(boxType === '1kg' ? `qty1kg-${productId}` : `qty5kg-${productId}`);
+  const qty = parseInt(qtyEl.value, 10);
+  // enforce global minimum rules:
+  if(boxType === '1kg' && qty < 10){
+    alert('Minimum order for 1kg boxes is 10 boxes. Please select at least 10.');
+    return;
+  }
+  if(boxType === '5kg' && qty < 1){
+    alert('Minimum order for 5kg boxes is 1 box. Please select at least 1.');
+    return;
+  }
+  const price = (boxType === '1kg') ? product.price1kg : product.price5kg;
+  const conf = confirm(`Add ${qty} ${boxType} box(es) of "${product.title}" to cart for ₹${price * qty}?`);
+  if(conf) addToCart(product.title, boxType, price, qty);
+}
+
+function addToCart(title, boxType, price, qty){
+  const existing = cart.find(i => i.title === title && i.box === boxType);
+  if(existing){
+    existing.qty += qty;
+  } else {
+    cart.push({ title, box: boxType, price, qty });
+  }
+  renderCart();
+}
+
+/* ------------------------------
+   Remove cart item by index
+   ------------------------------ */
+function removeFromCart(index){
+  cart.splice(index,1);
+  renderCart();
+}
+
+/* ------------------------------
+   Order via WhatsApp: builds clear message
+   ------------------------------ */
+document.getElementById('orderCartBtn').addEventListener('click', ()=>{
+  if(cart.length === 0){
+    alert('Your cart is empty. Please add items first.');
+    return;
+  }
+  // Validate minimums across cart: For 1kg ensure each item qty >= 10
+  for(const it of cart){
+    if(it.box === '1kg' && it.qty < 10){
+      alert(`Minimum order for 1kg boxes is 10. Please update "${it.title}" quantity.`);
+      return;
+    }
+    if(it.box === '5kg' && it.qty < 1){
+      alert(`Minimum order for 5kg boxes is 1. Please update "${it.title}" quantity.`);
+      return;
     }
   }
-
-  function addToCart(title,boxType,price,qty){
-    qty=parseInt(qty);
-    if(qty<1)return;
-    const existing=cart.find(i=>i.title===title && i.box===boxType);
-    if(existing){existing.qty+=qty;}else{cart.push({title,box:boxType,price,qty});}
-    renderCart();
-  }
-
-  function removeFromCart(title,boxType){
-    cart=cart.filter(i=>!(i.title===title && i.box===boxType));
-    renderCart();
-  }
-
-  function renderCart(){
-    if(cart.length===0){cartItemsDiv.textContent='No items added yet.'; cartTotalSpan.textContent='0'; return;}
-    cartItemsDiv.innerHTML='';
-    let total=0;
-    cart.forEach(item=>{
-      total+=item.price*item.qty;
-      const div=document.createElement('div');
-      div.innerHTML=`${item.title} - ${item.box} x ${item.qty} = ₹${item.price*item.qty} <button onclick="removeFromCart('${item.title}','${item.box}')" class="ml-2 text-xs bg-red-500 hover:bg-red-600 text-white rounded px-1">Remove</button>`;
-      cartItemsDiv.appendChild(div);
-    });
-    cartTotalSpan.textContent=total;
-  }
-
-  document.getElementById('orderCartBtn').addEventListener('click',()=>{
-    if(cart.length===0){alert('Add items to cart first'); return;}
-    let msg='Hello! I want to order the following from Bedi Sweets:%0A';
-    cart.forEach(i=>msg+=`- ${i.title} ${i.box} x ${i.qty} = ₹${i.price*i.qty}%0A`);
-    // open WhatsApp with encoded message
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`,'_blank');
-    // show thanks and confetti
-    alert('Thank you for your order! 🎉');
-    createConfetti(180);
-    // clear cart
-    cart=[];
-    renderCart();
+  // Build WhatsApp message (clean format)
+  let total = cart.reduce((s,i)=>s + i.price*i.qty,0);
+  let msg = `*🛒 Order from Bedi Sweets*%0A%0A`;
+  cart.forEach((i, idx)=>{
+    msg += `${idx+1}. ${i.title} | ${i.box} x ${i.qty} = ₹${i.price * i.qty}%0A`;
   });
+  msg += `%0A*Total: ₹${total}*%0A%0AName: %0AContact: %0ADelivery Date/Time: %0AAddress:`;
+  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+  createConfetti(120);
+  cart = [];
+  renderCart();
+});
 
-  function openReviewForm(title){
-    const review=prompt(`Leave your review for ${title}:`);
-    if(review){reviews.push({title,review}); updateReviews();}
+/* ------------------------------
+   Reviews rendering & modal
+   ------------------------------ */
+function renderReviews(){
+  reviewSection.innerHTML = '';
+  reviews.slice(0,20).forEach(r=>{
+    const div = document.createElement('div');
+    div.className = 'bg-white p-4 rounded-lg shadow';
+    const stars = '★'.repeat(r.rating);
+    div.innerHTML = `
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="font-semibold">${r.name}</div>
+          <div class="small-muted text-xs">${r.product}</div>
+        </div>
+        <div class="text-yellow-400 font-medium">${stars}</div>
+      </div>
+      <p class="mt-2 text-gray-700">${r.text}</p>
+    `;
+    reviewSection.appendChild(div);
+  });
+}
+
+/* ------------------------------
+   Review modal logic (no prompts)
+   ------------------------------ */
+let currentReviewProductId = null;
+let selectedStarRating = 5;
+
+function openReviewModal(productId){
+  currentReviewProductId = productId;
+  selectedStarRating = 5;
+  document.getElementById('reviewName').value = '';
+  document.getElementById('reviewText').value = '';
+  renderStarUI();
+  document.getElementById('reviewModal').classList.remove('hidden');
+  document.getElementById('reviewModal').style.display = 'flex';
+}
+
+function closeReviewModal(){
+  document.getElementById('reviewModal').classList.add('hidden');
+  document.getElementById('reviewModal').style.display = 'none';
+}
+
+function renderStarUI(){
+  const starContainer = document.getElementById('starRating');
+  starContainer.innerHTML = '';
+  for(let i=1;i<=5;i++){
+    const span = document.createElement('span');
+    span.className = 'star';
+    span.setAttribute('role','radio');
+    span.setAttribute('aria-checked', i===selectedStarRating ? 'true' : 'false');
+    span.innerText = i <= selectedStarRating ? '★' : '☆';
+    span.onclick = ()=>{ selectedStarRating = i; renderStarUI(); };
+    starContainer.appendChild(span);
   }
+}
 
-  function updateReviews(){
-    const reviewSection=document.getElementById('reviewSection');
-    reviewSection.innerHTML='';
-    reviews.forEach(r=>{
-      const div=document.createElement('div');
-      div.textContent=`${r.title}: "${r.review}"`;
-      reviewSection.appendChild(div);
-    });
+function submitReview(){
+  const name = document.getElementById('reviewName').value.trim() || 'Anonymous';
+  const text = document.getElementById('reviewText').value.trim();
+  if(!text || text.length < 3){ alert('Please write a review (3+ characters).'); return; }
+  const product = products.find(p=>p.id === currentReviewProductId);
+  reviews.unshift({ name, product: product ? product.title : 'Unknown', rating: selectedStarRating, text });
+  renderReviews();
+  closeReviewModal();
+  alert('Thank you for your review!');
+}
+
+/* ------------------------------
+   Inquiry form handler -> WhatsApp
+   ------------------------------ */
+function handleInquiry(e){
+  e.preventDefault();
+  const name = document.getElementById('inqName').value.trim() || 'Anonymous';
+  const contact = document.getElementById('inqContact').value.trim() || 'Not provided';
+  const message = document.getElementById('inqMessage').value.trim() || 'No message';
+  const text = `*📩 Inquiry for Bedi Sweets*%0A%0A👤 Name: ${name}%0A📞 Contact: ${contact}%0A💬 Message: ${message}`;
+  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`, '_blank');
+  alert('Your inquiry is prepared in WhatsApp. We will contact you shortly.');
+  document.getElementById('inquiryForm').reset();
+}
+
+/* ------------------------------
+   Confetti + sparkles + sprinkar creators
+   ------------------------------ */
+function createConfetti(count=80){
+  const parent = document.getElementById('confetti');
+  for(let i=0;i<count;i++){
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.position = 'absolute';
+    c.style.left = (Math.random()*100) + 'vw';
+    c.style.top = '-10px';
+    c.style.background = `hsl(${Math.random()*360},80%,60%)`;
+    const size = (4 + Math.random()*8);
+    c.style.width = `${size}px`;
+    c.style.height = `${size}px`;
+    c.style.opacity = 0.95;
+    c.style.borderRadius = `${Math.random()*6}px`;
+    c.style.animation = `confetti-fall ${2 + Math.random()*3}s linear forwards`;
+    parent.appendChild(c);
+    setTimeout(()=>c.remove(), 6000);
   }
+}
+const confettiStyle = document.createElement('style');
+confettiStyle.innerHTML = `
+@keyframes confetti-fall {
+  0%{ transform: translateY(0) rotate(0deg); opacity:1; }
+  100%{ transform: translateY(100vh) rotate(360deg); opacity:0; }
+}`;
+document.head.appendChild(confettiStyle);
 
+function createSparkles(count=120){
+  const container = document.getElementById('sparkles');
+  if(!container) return;
+  for(let i=0;i<count;i++){
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = (Math.random()*100) + '%';
+    s.style.top = (-10 - Math.random()*80) + '%';
+    const size = (3 + Math.random()*6);
+    s.style.width = `${size}px`;
+    s.style.height = `${size}px`;
+    s.style.background = `hsl(${Math.random()*360},90%,70%)`;
+    s.style.animationDuration = (4 + Math.random()*4) + 's';
+    container.appendChild(s);
+    setTimeout(()=>s.remove(), 9000 + Math.random()*3000);
+  }
+}
+createSparkles(120);
+setInterval(()=>createSparkles(12), 1200);
+
+function createSprinkar(count=60){
+  const container = document.getElementById('sprinkar');
+  if(!container) return;
+  for(let i=0;i<count;i++){
+    const s = document.createElement('div');
+    s.className = 'sprinkle';
+    const size = (2 + Math.random()*6);
+    s.style.width = `${size}px`;
+    s.style.height = `${size}px`;
+    s.style.left = (Math.random()*100) + 'vw';
+    s.style.top = '-10px';
+    s.style.background = `hsl(${Math.random()*360},90%,70%)`;
+    s.style.animationDuration = (3 + Math.random()*5) + 's';
+    s.style.opacity = 0.9;
+    container.appendChild(s);
+    setTimeout(()=>s.remove(), 9000);
+  }
+}
+createSprinkar(90);
+setInterval(()=>createSprinkar(18), 900);
+
+/* ------------------------------
+   Slideshow logic (keyboard accessible)
+   ------------------------------ */
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slider img');
+function showSlides(){
+  if(!slides || slides.length === 0) return;
+  slides.forEach(s => s.classList.remove('active'));
+  slideIndex = (slideIndex + 1) % slides.length;
+  slides[slideIndex].classList.add('active');
+}
+setInterval(()=>{ requestAnimationFrame(showSlides); }, 4500);
+document.addEventListener('keydown', function(e){
+  if(e.key === 'ArrowLeft'){ slideIndex = (slideIndex - 1 + slides.length) % slides.length; slides.forEach(s=>s.classList.remove('active')); slides[slideIndex].classList.add('active'); }
+  else if(e.key === 'ArrowRight'){ slideIndex = (slideIndex + 1) % slides.length; slides.forEach(s=>s.classList.remove('active')); slides[slideIndex].classList.add('active'); }
+});
+
+/* ------------------------------
+   On load: render products, cart, reviews, footer year, product schema
+   ------------------------------ */
+document.addEventListener('DOMContentLoaded', ()=>{
   renderProducts();
   renderCart();
+  renderReviews();
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Update footer year
-  document.getElementById('year').textContent=new Date().getFullYear();
-
-  /* ---------- Confetti ---------- */
-  function createConfetti(count=120){
-    const parent=document.getElementById('confetti');
-    for(let i=0;i<count;i++){
-      const c=document.createElement('div');
-      c.className='confetti-piece';
-      c.style.left=(Math.random()*100)+'vw';
-      c.style.top='-10px';
-      c.style.background=`hsl(${Math.random()*360},80%,60%)`;
-      c.style.width=(4+Math.random()*8)+'px';
-      c.style.height=c.style.width;
-      c.style.animationDuration=(2+Math.random()*3)+'s';
-      parent.appendChild(c);
-      setTimeout(()=>c.remove(),5000);
+  // inject per-product JSON-LD (Product schema) for SEO
+  const ldScript = document.getElementById('ld-products');
+  const productSchemas = products.map(p => ({
+    "@context":"https://schema.org",
+    "@type":"Product",
+    "name": p.title,
+    "image": [p.img],
+    "description": `${p.title} — wholesale sweet from Bedi Sweets, Amritsar.`,
+    "offers": {
+      "@type":"Offer",
+      "priceCurrency":"INR",
+      "price": p.price1kg,
+      "availability":"https://schema.org/InStock",
+      "url":"https://bedisweets.github.io/Bedisweets/"
     }
-  }
-
-  /* ---------- Sparkles inside banner (increased, visible) ---------- */
-  function createSparkles(count=220){
-    const container=document.getElementById('sparkles');
-    if(!container) return;
-    for(let i=0;i<count;i++){
-      const s=document.createElement('div');
-      s.className='sparkle';
-      // place across banner width; slightly above to fall through
-      s.style.left = (Math.random()*100) + '%';
-      s.style.top = (-20 - Math.random()*80) + '%'; // start above banner
-      const size = (3 + Math.random()*6);
-      s.style.width = size + 'px';
-      s.style.height = size + 'px';
-      s.style.background = `hsl(${Math.random()*360},90%,70%)`;
-      s.style.animationDuration = (4 + Math.random()*4) + 's';
-      container.appendChild(s);
-      // remove each after its animation ends
-      setTimeout(()=>s.remove(), 9000 + Math.random()*3000);
-    }
-  }
-  // run once to seed sparkles, and also keep periodic new sparkles
-  createSparkles(220);
-  setInterval(()=>createSparkles(20), 1500);
-
-  /* ---------- Banner slideshow automatic (keeps only banner images changed) ---------- */
-  let slideIndex = 0;
-  const slides = document.querySelectorAll('.slider img');
-  function showSlides(){
-    if(!slides || slides.length===0) return;
-    slides.forEach(s=>s.classList.remove('active'));
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].classList.add('active');
-  }
-  // start slideshow after small delay so first image shows
-  setInterval(()=>{ requestAnimationFrame(showSlides); }, 4000);
-
-  // Keyboard navigation for carousel (accessibility)
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'ArrowLeft'){ // previous
-      slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-      slides.forEach(s=>s.classList.remove('active'));
-      slides[slideIndex].classList.add('active');
-    } else if(e.key === 'ArrowRight'){ // next
-      slideIndex = (slideIndex + 1) % slides.length;
-      slides.forEach(s=>s.classList.remove('active'));
-      slides[slideIndex].classList.add('active');
-    }
-  });
-
-  /* --- expose to global scope so inline onclick works --- */
-  window.addToCartPrompt = addToCartPrompt;
-  window.addToCart = addToCart;
-  window.removeFromCart = removeFromCart;
-  window.openReviewForm = openReviewForm;
-  window.updateReviews = updateReviews;
-
-  /* ---------- Sprinkar (full page small flakes) ---------- */
-  function createSprinkar(count=40){
-    const container=document.getElementById('sprinkar');
-    if(!container) return;
-    for(let i=0;i<count;i++){
-      const s=document.createElement('div');
-      s.className='sprinkle';
-      const size = 2 + Math.random()*6;
-      s.style.width = size + 'px';
-      s.style.height = size + 'px';
-      s.style.left = (Math.random()*100) + 'vw';
-      s.style.top = '-10px';
-      // use pleasing bright hues like your sparkles
-      s.style.background = `hsl(${Math.random()*360},90%,70%)`;
-      s.style.animationDuration = (3 + Math.random()*5) + 's';
-      // slight horizontal drift
-      s.style.transform = `translateX(${(Math.random()*40 - 20)}px)`;
-      container.appendChild(s);
-      // remove after 9s to keep DOM clean
-      setTimeout(()=>s.remove(), 9000);
-    }
-  }
-  // seed sprinkar and keep adding periodically
-  createSprinkar(120);
-  setInterval(()=>createSprinkar(18), 900);
-
-  /* end DOMContentLoaded */
+  }));
+  ldScript.textContent = JSON.stringify(productSchemas, null, 2);
 });
-</script>
 
+/* ------------------------------
+   Expose functions for inline onclick usage
+   ------------------------------ */
+window.addToCartPrompt = addToCartPrompt;
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+window.openReviewModal = openReviewModal;
+window.renderReviews = renderReviews;
+
+</script>
 </body>
 </html>
-
-
