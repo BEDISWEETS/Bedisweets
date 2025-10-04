@@ -6,8 +6,7 @@
 <title>Bedi Sweets — Since 2005 | Wholesale Sweets in Amritsar</title>
 <meta name="description" content="Bedi Sweets — Wholesale traditional sweets from Amritsar since 2005. Minimum order 5kg. Call/WhatsApp +91-9888925640 for orders." />
 <link rel="canonical" href="https://bedisweets.github.io/Bedisweets/" />
-<meta name="robots" content="index, follow" />
-<meta name="google-site-verification" content="df7vqh5Hgl7uf6W5_033nnFtDDBgmD9U5LG6ptrw70k" />
+<meta name="viewport" content="width=1280, initial-scale=1.0">
 
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com" defer></script>
@@ -46,21 +45,34 @@ button:active {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2) inset;
 }
 
-:root{
-  --brand-rose: #be185d;
-  --brand-green: #15803d;
+/* Force same desktop view on all devices */
+html, body {
+  width: 100%;
+  min-width: 1280px; /* lock desktop width */
+  overflow-x: scroll; /* allow horizontal scroll if screen smaller */
 }
 
-body {
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: #111827;
-  background-image: url("https://www.govindam.co.in/wp-content/uploads/2024/05/Govindam-Sweets.jpg.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+.grid-desktop-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr)) !important; /* always 3 cols */
+  gap: 2rem;
 }
+
+header nav {
+  display: flex !important;
+  gap: 2rem !important;
+  flex-wrap: nowrap !important; /* prevent stacking */
+}
+
+.festive-banner {
+  min-height: 420px;
+  height: 72vh;
+}
+
+.banner-text h1 {
+  font-size: 2.5rem !important;
+}
+
 
 header { background-color: rgba(255,255,255,0.95); backdrop-filter: blur(6px); }
 .product-img { height:200px; width:100%; object-fit:cover; border-radius:12px; transition:transform .35s ease, box-shadow .35s ease; cursor:pointer; border:3px solid transparent; }
